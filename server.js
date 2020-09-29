@@ -13,6 +13,7 @@ app.use(
 		':method :url :status :res[content-length] - :response-time ms :body'
 	)
 )
+app.use(express.static('build'))
 
 let persons = [
 	{
@@ -70,7 +71,7 @@ app.post('/api/persons', (req, res) => {
 		const person = {
 			name: body.name,
 			number: body.number,
-			id: Math.floor(Math.random() * 1000),
+			id: body.id,
 		}
 
 		persons = persons.concat(person)
