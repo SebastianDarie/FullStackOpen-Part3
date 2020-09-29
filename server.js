@@ -37,6 +37,17 @@ let persons = [
 	},
 ]
 
+app.get('/', (req, res) => {
+	res.send('<h1>Phonebook app</h1>')
+})
+
+app.get('/info', (req, res) => {
+	const date = new Date()
+	res.send(`<p>Phonebook has info for ${persons.length} people</p>
+        <p>${date}</p>
+    `)
+})
+
 app.get('/api/persons', (req, res) => {
 	res.json(persons)
 })
@@ -73,13 +84,6 @@ app.delete('/api/persons/:id', (req, res) => {
 	persons = persons.filter((el) => el.id !== id)
 
 	res.status(204).end()
-})
-
-app.get('/info', (req, res) => {
-	const date = new Date()
-	res.send(`<p>Phonebook has info for ${persons.length} people</p>
-        <p>${date}</p>
-    `)
 })
 
 const PORT = process.env.PORT || 3001
