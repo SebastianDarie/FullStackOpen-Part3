@@ -5,7 +5,11 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "node server.js",
-		"dev": "nodemon server.js"
+		"dev": "nodemon server.js",
+		"build:ui": "rm -rf build && cd ../FullStackOpen/part2/phonebook && npm run build --prod && cp -r build ../../../FullStackOpen-Part3/",
+		"deploy": "git push heroku master",
+		"deploy:full": "npm run build:ui && git add . && git commit -m uibuild && npm run deploy",
+		"logs:prod": "heroku logs --tail"
 	},
 	"repository": {
 		"type": "git",
